@@ -1,0 +1,33 @@
+# node modules
+node_modules/
+
+# build files
+dist/
+build/
+.vite/
+
+# environment variables
+.env
+.env.*
+
+# logs
+*.log
+
+# system files
+.DS_Store
+Thumbs.db
+
+# cache
+.cache/
+.next/
+out/
+
+# editor settings
+.vscode/
+.idea/
+
+# backend data
+ecommerce-backend/db.json
+
+# typescript cache
+*.tsbuildinfo

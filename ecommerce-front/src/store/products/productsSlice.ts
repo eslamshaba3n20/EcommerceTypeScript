@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import actGetCategories from "./act/actGetCategories";
-import { TCategory } from "@customTypes/category";
+import actGetProductsByCatprefix from "./act/actGetProductsByCatprefix";
+import { TProduct } from "@customTypes/products";
 import { TLoading } from "@customTypes/shared";
 
 // type of verable on initialState
 interface ICategoriesState {
-  records: TCategory[];
+  records: TProduct[];
   loading: TLoading;
   error: string | null;
 }
@@ -16,16 +16,20 @@ const initialState: ICategoriesState = {
   error: null,
 };
 
-const categoriesSlice = createSlice({
-  name: "categories",
+const productsSlice = createSlice({
+  name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    productsCleanUp: (state) => {
+      state.records = [];
+    },
+  },
   extraReducers: (builder) => {
-    builder.addCase(actGetCategories.pending, (state) => {
+    builder.addCase(actGetProductsByCatprefix.pending, (state) => {
       state.loading = "pending";
       state.error = null;
     });
-    builder.addCase(actGetCategories.fulfilled, (state, action) => {
+    builder.addCase(actGetProductsByCatprefix.fulfilled, (state, action) => {
       state.loading = "succeeded";
       // state.records = action.payload;
       if (Array.isArray(action.payload)) {
@@ -34,7 +38,7 @@ const categoriesSlice = createSlice({
         state.error = "Invalid data received";
       }
     });
-    builder.addCase(actGetCategories.rejected, (state, action) => {
+    builder.addCase(actGetProductsByCatprefix.rejected, (state, action) => {
       state.loading = "failed";
       if (action.payload && typeof action.payload === "string") {
         state.error = action.payload;
@@ -42,5 +46,7 @@ const categoriesSlice = createSlice({
     });
   },
 });
-export { actGetCategories };
-export default categoriesSlice.reducer;
+export const { productsCleanUp } = productsSlice.actions;
+
+export { actGetProductsByCatprefix };
+export default productsSlice.reducer;

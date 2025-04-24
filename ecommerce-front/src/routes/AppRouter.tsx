@@ -22,11 +22,11 @@ const router = createBrowserRouter([
             { index: true, element: <Home /> },
             { path: "create", element: <Create /> },
             { path: "about-us", element: <AboutUs /> },
-            { path: "categories", element: <Categories /> },
             { path: "login", element: <Login /> },
             { path: "register", element: <Register /> },
+            { path: "categories", element: <Categories /> },
             {
-                path: "products/:prefix",
+                path: "categories/products/:prefix",
                 element: <Products />,
                 loader: ({ params }) => {
                     if (

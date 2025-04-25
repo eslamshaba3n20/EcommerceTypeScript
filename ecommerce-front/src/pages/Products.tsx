@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "@store/hooks";
 import { actGetProductsByCatprefix, productsCleanUp } from "@store/products/productsSlice";
 import { Product } from "@components/ecommerce";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { Loading } from "@components/feedback";
+import { GridList } from "@components/common";
 const Products = () => {
     const params = useParams();
 
@@ -11,11 +13,7 @@ const Products = () => {
 
     const { records, error, loading } = useAppSelector(state => state.Products)
 
-    const productsList = records.length > 0 ? records.map((record) => (
-        <Col xs={6} md={3} key={record.id} className="d-flex justify-content-center mb-5 mt-2">
-            <Product {...record} />
-        </Col>
-    )) : "there no Categories ";
+
     useEffect(() => {
 
         dispatsh(actGetProductsByCatprefix(params.prefix as string));
@@ -27,9 +25,14 @@ const Products = () => {
     }, [dispatsh, params]);
     return (
         <Container>
-            <Row>
-                {productsList}
-            </Row>
+            <Loading stuts={loading} error={error} >
+                <GridList
+                    records={records}
+                    renderItem={(recordd) => <Product {...recordd} />}
+                />
+            </Loading>
+
+
         </Container>
     );
 };

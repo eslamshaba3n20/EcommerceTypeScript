@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 import { useAppSelector, useAppDispatch } from "@store/hooks";
 import { actGetCategories } from "@store/categories/categoriesSlice";
 import { useEffect } from "react";
-import { GridList } from "@components/common";
+import { GridList, Headding } from "@components/common";
 import { Loading } from "@components/feedback";
 import { Category } from "@components/ecommerce";
 
@@ -21,14 +21,17 @@ const Categories = () => {
     }, [dispatsh]);
 
     return (
-        <Container>
-            <Loading stuts={loading} error={error}>
-                <GridList
-                    records={records}
-                    renderItem={(record) => <Category {...record} />}
-                />
-            </Loading>
-        </Container>
+        <>
+            <Headding>Categories</Headding>
+            <Container>
+                <Loading stuts={loading} error={error}>
+                    <GridList
+                        records={records}
+                        renderItem={(record) => <Category {...record} />}
+                    />
+                </Loading>
+            </Container>
+        </>
     );
 };
 

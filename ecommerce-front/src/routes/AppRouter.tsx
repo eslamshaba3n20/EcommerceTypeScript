@@ -12,6 +12,7 @@ import {
     Register,
     Error,
 } from "@pages/index";
+import Cart from "@pages/Cart";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
             { path: "login", element: <Login /> },
             { path: "register", element: <Register /> },
             { path: "categories", element: <Categories /> },
+            { path: "cart", element: <Cart /> },
             {
                 path: "categories/products/:prefix",
                 element: <Products />,

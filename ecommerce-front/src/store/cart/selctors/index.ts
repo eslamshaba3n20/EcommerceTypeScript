@@ -11,4 +11,18 @@ const getCartTotalQuantitySelector = createSelector(
         return totalQuantity;
     }
 );
-export { getCartTotalQuantitySelector };
+
+const itemQuantityAvailabilityCheckingSelector = createSelector(
+    (itemQuantity) => itemQuantity,
+    (_, itemMax) => itemMax,
+    (itemQuantity, itemMax) => {
+        const currentItemQuantityInCart = itemQuantity || 0;
+        // هنا هجيب الكميه المتبقيه من السله من الريداكس
+        const currentRemainingQuantity = itemMax - currentItemQuantityInCart;
+        // دا متغير عشان اهندل في الليمت بتاع المنتج اللي ممكن اختاره من السله
+
+        const quantityReachedToMax = currentRemainingQuantity <= 0 ? true : false;
+        return { currentRemainingQuantity, quantityReachedToMax };
+    }
+);
+export { getCartTotalQuantitySelector, itemQuantityAvailabilityCheckingSelector };

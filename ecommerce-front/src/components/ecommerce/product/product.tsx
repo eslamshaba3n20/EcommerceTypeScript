@@ -10,6 +10,7 @@ const Product = memo(({ id, title, img, price, max, quantity }: TProduct) => {
     const dispatch = useAppDispatch();
     console.log("render product");
     const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+    
     // هنا هجيب الكميه المتبقيه من السله من الريداكس
     const currentRemainQuantity = max - (quantity ?? 0);
     // دا متغير عشان اهندل في الليمت بتاع المنتج اللي ممكن اختاره من السله

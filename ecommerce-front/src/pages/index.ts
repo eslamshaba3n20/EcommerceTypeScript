@@ -6,5 +6,7 @@ import Products from "./Products";
 import Register from "./Register";
 import Login from "./Login";
 import Error from "./Error";
+import Cart from "./Cart";
+import WishList from "./wishList";
 
-export { Home, AboutUs, Categories, Create, Products, Register, Login, Error };
+export { Home, AboutUs, Categories, Create, Products, Register, Login, Error, Cart, WishList };

@@ -11,8 +11,9 @@ import {
     Login,
     Register,
     Error,
+    Cart,
+    WishList
 } from "@pages/index";
-import Cart from "@pages/Cart";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
             { path: "register", element: <Register /> },
             { path: "categories", element: <Categories /> },
             { path: "cart", element: <Cart /> },
+            { path: "wishList", element: <WishList /> },
             {
                 path: "categories/products/:prefix",
                 element: <Products />,

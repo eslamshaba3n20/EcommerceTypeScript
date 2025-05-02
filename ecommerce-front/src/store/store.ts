@@ -11,6 +11,7 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import categories from "./categories/categoriesSlice";
 import Products from "./products/productsSlice";
 import cart from "./cart/CartSlice";
+import wishList from "./wishList/wishListSlice";
 
 
 // عشان احفظ في لوكال استورتج بس هنا هكيش الكارت بس
@@ -19,11 +20,17 @@ const cartPersistConfig = {
   storage,
   whilelist: ['items'], // only cart will be persisted
 }
+const wishListConfig = {
+  key: 'wishList',
+  storage,
+  whilelist: ['iemsId'], // only cart will be persisted
+}
 
 const rootReducer = combineReducers({
   categories,
   Products,
   cart: persistReducer(cartPersistConfig, cart), // persist the cart slice
+  wishList: persistReducer(wishListConfig, wishList), // persist the wishList slice
 })
 
 // هعملها لو عامل رووت 

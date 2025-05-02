@@ -4,4 +4,5 @@ import Product from "./product/product";
 import CartItem from "./cartItem/CartItem";
 import CartSubTotalPrice from "./CartSubTotalPrice/CartSubTotalPrice";
 import CartItemList from "./cartItemList/cartItemList";
-export { HeaderBasket, Category, Product, CartItem, CartSubTotalPrice, CartItemList };
+import HeaderWishList from "./HeaderWishList/HeaderWishList";
+export { HeaderBasket, Category, Product, CartItem, CartSubTotalPrice, CartItemList, HeaderWishList };

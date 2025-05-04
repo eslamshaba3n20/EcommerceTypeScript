@@ -1,10 +1,12 @@
+import { memo } from "react";
 
-const Headding = ({ children }: { children: React.ReactNode }) => {
+const Headding = memo(({ title }: { title: string }) => {
+    console.log("Headding render");
     return (
         <p className="mb-3 " style={{ fontSize: "26px" }}>
-            {children}
+            {title}
         </p>
     );
-}
+})
 
 export default Headding;

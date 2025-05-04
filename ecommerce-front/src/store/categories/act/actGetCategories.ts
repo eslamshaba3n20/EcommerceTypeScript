@@ -1,6 +1,7 @@
-import { TCategory } from "@customTypes/category";
+import { TCategory } from "@types";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { axiosErrorHandler } from "@utils";
 
 type TResponse = TCategory;
 
@@ -14,11 +15,7 @@ const actGetCategories = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        return rejectWithValue(error.response?.data.message || error.response);
-      } else {
-        return rejectWithValue("an unknown error occurred");
-      }
+      return rejectWithValue(axiosErrorHandler(error));
     }
   }
 );

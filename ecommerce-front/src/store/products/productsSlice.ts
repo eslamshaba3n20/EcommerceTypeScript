@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import actGetProductsByCatprefix from "./act/actGetProductsByCatprefix";
-import { TProduct } from "@customTypes/products";
-import { TLoading } from "@customTypes/shared";
+import { TProduct, TLoading, isString } from "@types";
 
 // type of verable on initialState
 interface ICategoriesState {
@@ -20,7 +19,7 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    productsCleanUp: (state) => {
+    cleanProductsRecords: (state) => {
       state.records = [];
     },
   },
@@ -40,13 +39,13 @@ const productsSlice = createSlice({
     });
     builder.addCase(actGetProductsByCatprefix.rejected, (state, action) => {
       state.loading = "failed";
-      if (action.payload && typeof action.payload === "string") {
+      if (isString(action.payload)) {
         state.error = action.payload;
       }
     });
   },
 });
-export const { productsCleanUp } = productsSlice.actions;
+export const { cleanProductsRecords } = productsSlice.actions;
 
 export { actGetProductsByCatprefix };
 export default productsSlice.reducer;
